@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>홈</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Song+Myung&display=swap" rel="stylesheet">
+        <style>
+            * { font-family : 'Song Myung',serif; text-align:center; }
+            .card { position:absolute; right:5%; top:20%; border:1px black solid; padding:10px; border-radius:10px; }
+            .i1 { align-content: center; position:absolute; top:30%; left:10%; }
+        </style>
+    </head>
+    <body>
+        <div class="card" style="width: 18rem;">
+            <h5 class="card-title">반가워요</h5>
+            <a href="#" class="card-link">&#128296마이페이지</a>
+            <a href="#" class="card-link">로그아웃</a>
+        </div>
+        <div class="i1">
+            <img style="padding:10px;"src="{% static '1_.png'%}"width="250" height="250">
+            <img style="padding:10px;"src="{% static '2_.png'%}"width="250" height="250">
+            <img style="padding:10px;"src="{% static '3_.png'%}"width="250" height="250">
+        </div>
+    </body>
+</html>
+{% endblock %}

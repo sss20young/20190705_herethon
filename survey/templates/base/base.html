@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <link href="https://fonts.googleapis.com/css?family=Song+Myung&display=swap" rel="stylesheet">
+      <style>
+          *{font-family: 'Song Myung', serif;text-align:center;font-size:17px;}
+          nav ul li{ padding:0 50px;}
+          .s1{border:solid 1px black;background-color:white;border-radius:10px;}
+      </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="{% url 'home' %}">Uni-survey</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'join2' %}">설문참여</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'postcreate' %}">설문등록</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}" tabindex="-1" aria-disabled="true">로그아웃</a>
+                        <form id="logout" method="POST" action="{% url 'logout' %}">
+                        {% csrf_token %} <input type="hidden" />
+                        </form>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'mypage' %}" tabindex="-1" aria-disabled="true">마이페이지</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}" tabindex="-1" aria-disabled="true">로그인</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'signup' %}" tabindex="-1" aria-disabled="true">회원가입</a>
+                    </li>
+                    {% endif %}
+                </ul>
+                <form class="form-inline my-2 my-lg-0" action="{% url 'search' %}" method="get">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="q" value="{{ q }}">
+                    <input type="submit"  class="s1"value="&#128270검색">
+                </form>
+            </div>
+        </nav>
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>

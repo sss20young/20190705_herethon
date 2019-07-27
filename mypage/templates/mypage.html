@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!--{% for post in posts.all %} 
+                
+    <a>설문조사 주제 : {{ post.title }}</a>
+    <a>{{ post.belong }}</a></td>
+    <a href="{% url 'show' post.id %}">설문 글 보러가기</a>
+                
+{% endfor %}-->
+
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<link href="https://fonts.googleapis.com/css?family=Song+Myung&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<style>
+			* { font-family: 'Song Myung',serif; text-align:center; }
+			.table {
+				width:800px;
+				margin-left:auto;
+				margin-right:auto;
+			}
+			#userid {
+				width:120px;
+				height:120px;
+				margin-left:180px;
+			}
+			.mine {
+				padding:130px;
+			}
+			.btn {
+				margin-left:40px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="mine">
+			<h2>내가 등록한 설문조사들</h2>
+		<div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col"></th>
+					<th scope="col">설문조사 주제</th>
+					<th scope="col">소속</th>
+					<th scope="col">링크</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for post in posts.all %} 
+					<tr>
+						<td><a>{{ post.title }}</a></td>
+						<td><a>{{ post.belong }}</a></td>
+						<td><a href="{% url 'show' post.id %}">해당 글 보러가기</a></td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</body>
+</html>
+{% endblock %}

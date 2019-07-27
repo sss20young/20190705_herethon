@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>홈</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Song+Myung&display=swap" rel="stylesheet">
+        <style>
+            * { font-family: 'Song Myung', serif;text-align:center; }
+            .f1 { position:absolute; 
+            top:50%; left:50%;
+            margin-top:-100px; margin-left:-100px; 
+            width:200px; height:200px; 
+            }
+            .b1 { border:black 1px solid;color:black;background-color: white;border-radius:5px; }
+        </style>
+    </head>
+    <body>       
+        <div class="f1"> 
+            <form method="POST" action="{% url 'login' %}" class="form-login">
+                {% csrf_token %} <!--보안을 위한 난수 발생기. csrf공격을 방어하는 수단.-->
+                <h1 class="h3 mb-3 font-weight-normal">&#128273로그인</h1>
+                <input name="username" type="text" value="username" id="username" class="form-control" placeholder="Email address" required autofocus>
+                <input name="password" type="password" value="password" id="password" class="form-control" placeholder="Password" required>
+                <br>
+                <input class="b1" type="submit" value="로그인하기">
+            </form>
+        </div>
+    </body>
+</html>
+
+{% endblock %}
+

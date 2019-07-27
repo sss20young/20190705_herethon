@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Song+Myung&display=swap" rel="stylesheet">
+    <style>
+        * { font-family:'Song Myung',serif; text-align:center; }
+        button { border:black 1px solid; border-radius:8px; }
+        .c1 { position: absolute; left:10%; }
+    </style>
+</head>
+<body>
+    <div class="m1">
+        <div class="f1">
+            <h3 style="padding:10px;">제목 : {{ post.title }}</h3>
+            <hr/>
+            <br>
+            <p>&#128197작성 날짜 : {{ post.date }}</p>
+            <p>소속 : {{ post.belong }}</p>
+            <p>내용 : {{ post.about }}</p>
+            <p>분류 : {{ post.kind }}</p>
+            <p>URL : {{ post.URL }}</p>
+            <br/><br/>
+        </div>
+        <form action="{% url 'commentcreate' post.id %}" method='POST'>
+            {% csrf_token %}
+            {{form}}
+            <button type='submit'>댓글 등록</button>
+        </form>
+        <br/>
+        <div class="c1">
+            <h4>&#128172댓글</h4>
+            {% for comment in post.comment_set.all %}
+                {{ comment.content }}<br/>
+            {% endfor %}
+            <br/>
+        </div>
+        <a href="{% url 'join2' %}">목록</a>
+    </div>
+</body>
+
+{% endblock %}
